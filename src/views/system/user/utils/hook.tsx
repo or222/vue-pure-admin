@@ -110,10 +110,10 @@ export function useUser(tableRef: Ref, treeRef: Ref) {
       cellRenderer: ({ row, props }) => (
         <el-tag
           size={props.size}
-          type={row.sex === 1 ? "danger" : null}
+          type={row.sex === "0" ? "danger" : null}
           effect="plain"
         >
-          {row.sex === 1 ? "女" : "男"}
+          {row.sex === "0" ? "女" : "男"}
         </el-tag>
       )
     },
@@ -137,8 +137,8 @@ export function useUser(tableRef: Ref, treeRef: Ref) {
           size={scope.props.size === "small" ? "small" : "default"}
           loading={switchLoadMap.value[scope.index]?.loading}
           v-model={scope.row.status}
-          active-value={1}
-          inactive-value={0}
+          active-value="1"
+          inactive-value="0"
           active-text="已启用"
           inactive-text="已停用"
           inline-prompt
@@ -276,7 +276,7 @@ export function useUser(tableRef: Ref, treeRef: Ref) {
     dataList.value = data.list;
     pagination.total = data.total;
     pagination.pageSize = data.pageSize;
-    pagination.currentPage = data.currentPage;
+    pagination.currentPage = data.pageNo;
 
     setTimeout(() => {
       loading.value = false;

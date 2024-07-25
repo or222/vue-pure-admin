@@ -74,7 +74,16 @@ export const useUserStore = defineStore({
       return new Promise<UserResult>((resolve, reject) => {
         getLogin(data)
           .then(data => {
-            if (data?.success) setToken(data.data);
+            let result: any = {
+              //avatar: "https://avatars.githubusercontent.com/u/44761321",
+              username: "admin",
+              //nickname: "小铭",
+              roles: ["admin"],
+              accessToken: data.data
+              //refreshToken: "eyJhbGciOiJIUzUxMiJ9.adminRefresh",
+              //expires: "2030/10/30 00:00:00"
+            };
+            if (data?.success) setToken(result);
             resolve(data);
           })
           .catch(error => {
